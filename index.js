@@ -1,8 +1,25 @@
-const express = require("express");
+var express = require('express');
+var path = require('path');
 
-const app = express();
-const port = 8080;
+var app = express();
+var PORT = 8080;
 
-app.listen(port, () => {
-    console.log(`Server listening on Port: ${port}`);
+app.get('/style.css', function(req, res){
+    var options = {
+        root: path.join(__dirname)
+    };
+
+    var fileName = 'www/style.css';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+});
+
+app.listen(PORT, function(err){
+    if (err) console.log(err);
+    console.log("Server listening on PORT", PORT);
 });
