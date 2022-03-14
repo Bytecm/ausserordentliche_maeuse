@@ -32,7 +32,7 @@ The default port is: 8080/tcp
 When you want to use the classic "docker run" use this Commands:
 
 ##### starting:
-> docker run -d -p 8080:8080 --name ausserordentliche_maeuse ghcr.io/bytecm/ausserordentliche_maeuse:docker
+> docker run -d -p 8080:8080 --name ausserordentliche_maeuse ghcr.io/bytecm/ausserordentliche_maeuse:main
 
 ##### stopping:
 > docker stop ausserordentliche_maeuse
