@@ -3,11 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const {response} = require("express");
 
 const app = express();
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/", express.static("./src/public"));
 
@@ -45,34 +44,36 @@ function hash(password) {
     return crypto.createHash("sha256").update(password).digest("base64");
 }
 
-function createCredentials(body) {
-    return body.user.toLowerCase() + ":" + hash(body.pass);
-}
 
-const accounts = [];
+const users = [];
 
 app.post("/signup", inputValidity, (req, res) => {
-    const credentials = createCredentials(req.body);
-    if (!accounts.includes(credentials)) {
-        accounts.push(credentials);
-        console.debug("Added new credentials: " + credentials);
+    const user = {name: req.body.user, password: hash(req.body.pass), favorites: []}
+
+    if (!users.includes(user)) {
+        users.push(user);
+        const userName = user.name;
+        console.debug("Added new credentials: " + userName + " " + user.password);
     }
 
     res.redirect("/");
 });
 
 app.post("/login", inputValidity, (req, res) => {
-    const credentials = createCredentials(req.body);
-    if (accounts.includes(credentials)) {
+    const user = users.find(user => user.name === req.body.user);
+    if (user) {
         res.cookie(
             "testSession",
-            { user: req.body.user.toLowerCase(), loggedIn: true },
-            { maxAge: 1000 * 60 * 15 }
+            {user: req.body.user.toLowerCase(), loggedIn: true},
+            {maxAge: 1000 * 60 * 15}
         );
         res.redirect("/secure");
     } else {
-        window.alert("bitte registrieren.")
-        res.redirect("/");
+        res.render('login', {
+            message: 'Invalid username or password',
+            messageClass: 'alert-danger'
+        });
+        //res.redirect("/");
     }
 });
 
@@ -88,6 +89,7 @@ function cookieSecurity(req, res, next) {
         next();
     }
 }
+
 app.use("/secure", cookieSecurity, express.static("./src/secure"));
 
 const port = 8080;

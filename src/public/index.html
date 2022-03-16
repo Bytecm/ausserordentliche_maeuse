@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="style.css"/>
     <title>Static Template</title>
 </head>
 <body>
-<form method="POST" action="/login">
-    <label for="user">Benutzer:</label>
-    <input type="text" name="user" /><br />
-    <label for="pass">Passwort:</label>
-    <input type="password" name="pass" /><br />
-    <input type="submit" value="login" />
-</form>
-<a href="/signup.html">sign up</a>
+<div class="login-header">
+    <h1> Die Welt der außerordentlichen Mäuse </h1>
+    <div class="line"></div>
+    <h1> Willkommen beim Login! </h1>
+</div>
+<div class="login-body">
+    <form method="POST" action="/login">
+        <label>Benutzer:</label>
+        <input type="text" name="user"/><br/>
+        <label>Passwort:</label>
+        <input type="password" name="pass"/><br/>
+        <input type="submit" value="login"/>
+    </form>
+    <h3> Noch kein Konto? <span class="link-to-reglog"><a href="/signup.html"> Hier registrieren!</a> </span></h3>
+</div>
 </body>
 </html>
