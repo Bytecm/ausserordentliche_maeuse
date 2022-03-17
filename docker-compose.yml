@@ -4,4 +4,4 @@ services:
     ports:
       - '8080:8080'
     container_name: ausserordentliche_maeuse
-    image: ghcr.io/bytecm/ausserordentliche_maeuse:docker
+    image: ghcr.io/bytecm/ausserordentliche_maeuse:main
