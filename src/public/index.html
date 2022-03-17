@@ -1,25 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="style.css"/>
-    <title>Static Template</title>
-</head>
-<body>
-<div class="login-header">
-    <h1> Die Welt der außerordentlichen Mäuse </h1>
-    <div class="line"></div>
-    <h1> Willkommen beim Login! </h1>
-</div>
-<div class="login-body">
-    <form method="POST" action="/login">
-        <label>Benutzer:</label>
-        <input type="text" name="user"/><br/>
-        <label>Passwort:</label>
-        <input type="password" name="pass"/><br/>
-        <input type="submit" value="login"/>
-    </form>
-    <h3> Noch kein Konto? <span class="link-to-reglog"><a href="/signup.html"> Hier registrieren!</a> </span></h3>
-</div>
-</body>
+<html lang="de">
+    <head>
+        <link rel="stylesheet" href="../../style.css"/>
+        <!-- <script src="src/script.js"></script> -->
+        <meta charset="UTF-8"/>
+        <title> Hauptseite - Außerordentliche Mäuse </title>
+    </head>
+    <body>
+    <a href="/login.html"> Hier anmelden! </a> <br>
+    <a href="/signup.html"> Hier registrieren!</a>
+
+        <div class="main-header">
+            <h1> Die Welt der außerordentlichen Mäuse </h1>
+            <div class="line"> </div>
+        </div>
+        <div class="main-body">
+            <div class="main-favorites">
+                <div id="favorites-heading">
+                    <h1> Favoriten </h1>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        Mausname 1
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        Mausname 2
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        Mausname 3
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+            </div>
+            <div class="main-all">
+                <div id="all-heading">
+                    <h1> Alle Mäuse </h1>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 1
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 2
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 3
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 4
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 5
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                    <div class="all-mouse-name">
+                        Mausname 6
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

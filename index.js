@@ -96,6 +96,8 @@ const maeuse = [
 ];
 
 
+
+
 const users = [];
 
 app.post("/signup", inputValidity, (req, res) => {
@@ -107,7 +109,7 @@ app.post("/signup", inputValidity, (req, res) => {
         console.debug("Added new credentials: " + userName + " " + user.password);
     }
 
-    res.redirect("/");
+    res.redirect("/login");
 });
 
 app.post("/login", inputValidity, (req, res) => {
@@ -118,7 +120,7 @@ app.post("/login", inputValidity, (req, res) => {
             {user: req.body.user.toLowerCase(), loggedIn: true},
             {maxAge: 1000 * 60 * 15}
         );
-        res.redirect("/secure");
+        res.redirect("/public/index.html");
     } else {
         res.render('login', {
             message: 'Invalid username or password',
@@ -141,7 +143,7 @@ function cookieSecurity(req, res, next) {
     }
 }
 
-app.use("/secure", cookieSecurity, express.static("./src/secure"));
+app.use("/public", cookieSecurity, express.static("./src/public/index.html"));
 
 const port = 8080;
 
