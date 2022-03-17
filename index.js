@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
+const {response} = require("express");
 
 const app = express();
 app.use(cookieParser());
@@ -96,8 +97,6 @@ const maeuse = [
 ];
 
 
-
-
 const users = [];
 
 app.post("/signup", inputValidity, (req, res) => {
@@ -108,8 +107,14 @@ app.post("/signup", inputValidity, (req, res) => {
         const userName = user.name;
         console.debug("Added new credentials: " + userName + " " + user.password);
     }
+    else {
+        return response.statusText('Das Konto existiert schon, bitte einloggen.');
 
-    res.redirect("/login");
+
+
+    }
+
+    res.redirect("../login.html");
 });
 
 app.post("/login", inputValidity, (req, res) => {
@@ -120,12 +125,9 @@ app.post("/login", inputValidity, (req, res) => {
             {user: req.body.user.toLowerCase(), loggedIn: true},
             {maxAge: 1000 * 60 * 15}
         );
-        res.redirect("/public/index.html");
+        res.redirect("/public");
     } else {
-        res.render('login', {
-            message: 'Invalid username or password',
-            messageClass: 'alert-danger'
-        });
+       return response.statusMessage
         //res.redirect("/");
     }
 });
@@ -143,7 +145,7 @@ function cookieSecurity(req, res, next) {
     }
 }
 
-app.use("/public", cookieSecurity, express.static("./src/public/index.html"));
+app.use("/public", cookieSecurity, express.static("./src/public"));
 
 const port = 8080;
 
