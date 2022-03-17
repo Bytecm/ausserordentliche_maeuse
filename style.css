@@ -3,7 +3,7 @@ body {
     background: blanchedalmond;
 }
 
-.login-header, .register-header, .details-header {
+.login-header, .register-header, .details-header, .main-header {
     text-align: center;
 }
 
@@ -169,4 +169,53 @@ body {
     border: 1px solid #000000;
     padding: 2%;
     width: 100%;
+}
+
+.main-body {
+    font-size: x-large;
+    text-align: center;
+}
+
+.main-favorites, .main-all {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border: 2px solid black;
+    padding: 1%;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 2%;
+}
+
+#favorites-heading, #all-heading {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.favorite-mouse, .all-mouse {
+    border: 2px solid black;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    padding: 2%;
+}
+
+.favorite-mouse-name, .all-mouse-name {
+    margin-bottom: 3%;
+}
+
+.favorite-button {
+    font-size: 20px;
+    background: #ffecb3;
+    border: 3px solid #ffcc80;
+    border-radius: 5px;
+    margin-left: 30%;
+    height: auto;
+    width: auto;
+}
+
+.favorite-button:hover {
+    background: #ffecb3;
+    border: 3px solid #bd9862;
+    border-radius: 5px;
+    cursor: pointer;
 }
