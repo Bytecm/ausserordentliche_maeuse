@@ -5,8 +5,6 @@
     <!-- <script src="src/script.js"></script> -->
     <meta charset="UTF-8"/>
     <title> Details - Außerordentliche Mäuse </title>
-
-    <script src="./script.js"></script>
 </head>
 <body>
 <p id="3"></p>
@@ -33,18 +31,10 @@
 <div class="details-kommentare">
     <h3> Kommentare: </h3>
 
-
-    <form>
-        <textarea class="comment-formfield" name="comment" placeholder="Kommentar verfassen"></textarea> <br>
-        <input type="submit" class="submit-comment-formfield" value="Posten"> <br>
-    </form>
-
-
-    <input type="text" id="comment-box" placeholder="Enter comment">
-    <button id="post">Post</button>
+    <input type="text" class="comment-formfield" id="comment-box" placeholder="Enter comment">
+    <button class="submit-comment-formfield" id="postButton">Post</button>
     <ul id="unordered">
     </ul>
-
 
     <div class="line"></div>
     <div id="details-posted-kommentare">
@@ -52,5 +42,6 @@
         <div id="details-posted-kommentare-body"> Hallo dies ist ein Test</div>
     </div>
 </div>
+<script src="./script.js"></script>
 </body>
 </html>
