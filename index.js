@@ -44,6 +44,27 @@ function hash(password) {
     return crypto.createHash("sha256").update(password).digest("base64");
 }
 
+const maeuse = [
+    {
+        "id":1,
+        "Mausname":"Computermaus",
+        "Groeße":"10cm-15cm",
+        "Vorkommen":"Schreibtisch",
+        "Funfact":"Blinkt gerne!",
+        "Verfasser":"Chris",
+
+    },
+    {},
+    {}
+];
+
+
+
+
+
+
+
+
 
 const users = [];
 
