@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  ausserordentliche_maeuse:
+    ports:
+      - '8080:8080'
+    container_name: ausserordentliche_maeuse
+    image: ghcr.io/bytecm/ausserordentliche_maeuse:main
