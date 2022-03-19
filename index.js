@@ -4,12 +4,13 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const {response} = require("express");
+const path = require('path');
 
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use("/", express.static("./src/public"));
+//app.use("/", express.static("./src/public"));
 
 function inputValid(body) {
     if (body.user && body.pass) {
@@ -119,6 +120,7 @@ app.post("/signup", inputValidity, (req, res) => {
 
 app.post("/login", inputValidity, (req, res) => {
     const user = users.find(user => user.name === req.body.user);
+    console.debug("Logging in User: " + req.body.user);
     if (user) {
         res.cookie(
             "testSession",
@@ -145,10 +147,34 @@ function cookieSecurity(req, res, next) {
     }
 }
 
-app.use("/public", cookieSecurity, express.static("./src/public"));
+
+app.get("/", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/main_site.html'));
+});
+
+app.get("/style.css", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/style.css'));
+});
+
+app.get("/main_site.js", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/main_site.js'));
+});
+
+app.get("/details", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/details.html'));
+});
+
+app.get("/login-page", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/login.html'));
+});
+
+app.get("/signup-page", (_, res) => {
+    console.log("sending signup page");
+    res.sendFile(path.join(__dirname, './src/public/signup.html'));
+});
 
 const port = 8080;
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Listening on: http://localhost:${port}`);
 });
