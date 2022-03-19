@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const {response} = require("express");
 const path = require('path');
+const Console = require("console");
 
 const app = express();
 app.use(cookieParser());
@@ -117,8 +118,15 @@ var maeuse = [
     }
 ];
 
-
-const users = [];
+let users = [
+    {
+        "name": "a",
+        "password": "secure",
+        "favoriten": [
+            {"id": 1}
+        ]
+    }
+];
 
 app.post("/postComment", cookieSecurity, (req, res) => {
     let comment = req.body.comment;
@@ -131,15 +139,14 @@ app.post("/postComment", cookieSecurity, (req, res) => {
 });
 
 app.post("/signup", inputValidity, (req, res) => {
-    const user = {name: req.body.user, password: hash(req.body.pass), favorites: []}
+    let user = {name: req.body.user, password: hash(req.body.pass), favoriten: [{"id": -1}]}
 
     if (!users.includes(user)) {
         users.push(user);
-        const userName = user.name;
+        let userName = user.name;
         console.debug("Added new credentials: " + userName + " " + user.password);
     } else {
         return response.statusText('Das Konto existiert schon, bitte einloggen.');
-
     }
 
     res.redirect("/login-page");
@@ -230,21 +237,35 @@ app.get("/getmaeuse", (_, res) => {
     res.json(maeuse);
 });
 
-app.get("/getfavmaeuse", (_, res) => {
-    res.json(maeuse); //ToDo: CHANGE JSON TO THE FAVORITE MOUSEs
+app.get("/getfavmaeuse", (req, res) => {
+    let userName = req.cookies.username;
+    let user = users.find(user => user.name === userName);
+    let favMouses = [];
+    let favs = user.favoriten;
+    for (let i = 0; i < favs.length; i++) {
+        let mouseId = favs[i].id;
+        if (mouseId > 0) {
+            let mouse = maeuse.find(mouse => mouse.id === mouseId);
+            favMouses.push(mouse);
+        }
+    }
+    res.json(favMouses);
 });
 
-app.get("/mostvisitedmause", (_, res) => {
-    res.json(maeuse); //ToDo: CHANGE JSON TO THE MOST VISITED MOUSEs
-});
+app.get("/fav-mouse", cookieSecurity, (req, res) => {
+    let mouseId = parseInt(req.query.id);
+    let userName = req.cookies.username;
+    let user = users.find(user => user.name === userName);
 
+    user.favoriten.push({"id": mouseId});
+    res.redirect("/");
+});
 
 app.get("/getMouseById", (req, res) => {
     let mouseId = parseInt(req.query.id) - 1;
     let maus = maeuse[mouseId];
     res.json(maus);
 });
-
 
 const port = 8080;
 

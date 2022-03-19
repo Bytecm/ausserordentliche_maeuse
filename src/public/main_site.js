@@ -32,8 +32,7 @@ function setMostVistedMouse(mostVistedMouse) {
 function jsonToHTML(mouse) {
     let html = "<div class=\"mouse\">\n";
     html += "<div class=\"favorite-mouse-name\">\n";
-    html += "<a href=\"/details?id=" + mouse.id + "\">" + mouse.Mausname + "</a>\n";
-    html += "<button type=\"button\" class=\"favorite-button\">Favorisieren</button>\n";
+    html += "<a href=\"/details?id=" + mouse.id + "\"><p>" + mouse.Mausname + "</p></a>\n";
     html += "</div>\n";
     html += "<div>\n";
     html += "<img class=\"mouse-image\" src=\"" + mouse.Bild + " \">\n";
