@@ -48,51 +48,63 @@ function hash(password) {
 
 const maeuse = [
     {
-        "id":1,
-        "Mausname":"Computermaus",
-        "Groesse":"ca. 10cm-13cm",
-        "Vorkommen":"Meistens auf Schreibtisch",
-        "Funfact":"Blinkt gerne!",
-        "Verfasser":"Chris",
-        "Kommentare":[
-            // Post oder Put bauen
-            {"Verfasser":"...", "Kommentar":"Poggies!"}
+        "id": 1,
+        "Mausname": "Computermaus",
+        "Bild": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg",
+        "Groesse": "ca. 10cm-13cm",
+        "Vorkommen": "Meistens auf Schreibtisch",
+        "Funfact": "Blinkt gerne!",
+        "Verfasser": "Chris",
+        "Kommentare": [
+            {
+                "Verfasser": "...",
+                "Kommentar": "Poggies!"
+            }
         ]
     },
     {
-        "id":2,
-        "Mausname":"Ostschermaus",
-        "Groesse":"ca. 13cm-24cm",
-        "Vorkommen":"Großen Teilen der Paläarktis",
-        "Funfact":"Sehr groß!",
-        "Verfasser":"Oliver",
-        "Kommentare":[
-            // Post oder Put bauen
-            {"Verfasser":"...", "Kommentar":"He is THICC!"}
+        "id": 2,
+        "Mausname": "Ostschermaus",
+        "Bild": "https://kleinsaeuger.at/files/content/foto/wuehlmaeuse/Arvicola_amphibius%281%29_GrahamC57_flickr.jpg",
+        "Groesse": "ca. 13cm-24cm",
+        "Vorkommen": "Großen Teilen der Paläarktis",
+        "Funfact": "Sehr groß!",
+        "Verfasser": "Oliver",
+        "Kommentare": [
+            {
+                "Verfasser": "...",
+                "Kommentar": "He is THICC!"
+            }
         ]
     },
     {
-        "id":3,
-        "Mausname":"Sumpfspitzmaus",
-        "Groesse":"ca. 7cm",
-        "Vorkommen":"Europa",
-        "Funfact":"spitze Schnauze!",
-        "Verfasser":"...",
-        "Kommentare":[
-            // Post oder Put bauen
-            {"Verfasser":"...", "Kommentar":"Maulwurf-Maus XD"}
+        "id": 3,
+        "Mausname": "Sumpfspitzmaus",
+        "Bild": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neomys_anomalus.jpg/600px-Neomys_anomalus.jpg",
+        "Groesse": "ca. 7cm",
+        "Vorkommen": "Europa",
+        "Funfact": "spitze Schnauze!",
+        "Verfasser": "...",
+        "Kommentare": [
+            {
+                "Verfasser": "...",
+                "Kommentar": "Maulwurf-Maus XD"
+            }
         ]
     },
     {
-        "id":4,
-        "Mausname":"Elefantenspitzmaus",
-        "Groesse":"ca. 20cm",
-        "Vorkommen":"Ost- und Südafrika",
-        "Funfact":"Nase sieht wie ein Rüssel aus!",
-        "Verfasser":"...",
-        "Kommentare":[
-            // Post oder Put bauen
-            {"Verfasser":"...", "Kommentar":"Elefanten-Maus XD"}
+        "id": 4,
+        "Mausname": "Elefantenspitzmaus",
+        "Bild": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Bushveld-elephant-shrew.jpg",
+        "Groesse": "ca. 20cm",
+        "Vorkommen": "Ost- und Südafrika",
+        "Funfact": "Nase sieht wie ein Rüssel aus!",
+        "Verfasser": "...",
+        "Kommentare": [
+            {
+                "Verfasser": "...",
+                "Kommentar": "Elefanten-Maus XD"
+            }
         ]
     }
 ];
@@ -115,7 +127,7 @@ app.post("/signup", inputValidity, (req, res) => {
 
     }
 
-    res.redirect("../login.html");
+    res.redirect("/login-page");
 });
 
 app.post("/login", inputValidity, (req, res) => {
@@ -127,7 +139,7 @@ app.post("/login", inputValidity, (req, res) => {
             {user: req.body.user.toLowerCase(), loggedIn: true},
             {maxAge: 1000 * 60 * 15}
         );
-        res.redirect("/public");
+        res.redirect("/");
     } else {
        return response.statusMessage
         //res.redirect("/");
@@ -147,7 +159,6 @@ function cookieSecurity(req, res, next) {
     }
 }
 
-
 app.get("/", (_, res) => {
     res.sendFile(path.join(__dirname, './src/public/main_site.html'));
 });
@@ -160,7 +171,9 @@ app.get("/main_site.js", (_, res) => {
     res.sendFile(path.join(__dirname, './src/public/main_site.js'));
 });
 
-app.get("/details", (_, res) => {
+app.get("/details", (req, res) => {
+    let mouseId = parseInt(req.query.id);
+    res.cookie('targetMouse', mouseId);
     res.sendFile(path.join(__dirname, './src/public/details.html'));
 });
 
@@ -169,9 +182,26 @@ app.get("/login-page", (_, res) => {
 });
 
 app.get("/signup-page", (_, res) => {
-    console.log("sending signup page");
     res.sendFile(path.join(__dirname, './src/public/signup.html'));
 });
+
+app.get("/post_comment.js", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/post_comment.js'));
+});
+
+app.get("/getmaeuse", (_, res) => {
+    res.json(maeuse);
+});
+
+app.get("/getfavmaeuse", (_, res) => {
+    res.json(maeuse); //ToDo: CHANGE JSON TO THE FAVORITE MOUSEs
+});
+
+app.get("/mostvisitedmause", (_, res) => {
+    res.json(maeuse); //ToDo: CHANGE JSON TO THE MOST VISITED MOUSEs
+});
+
+
 
 const port = 8080;
 

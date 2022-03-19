@@ -113,6 +113,34 @@ body {
     height: auto;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 15px;
+    gap: 5px;
+    height: inherit;
+    border: 2px solid black;
+}
+
+.mouse-image {
+    height: 300px;
+}
+
+.mouse {
+    border: 2px solid black;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    padding: 2%;
+}
+
+.mouse-container-headline {
+    font-size: x-large;
+    text-align: center;
+}
+
 .details-kommentare {
     font-size: x-large;
     width: 95%;
