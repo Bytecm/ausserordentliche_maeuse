@@ -5,8 +5,19 @@ getMouses();
 async function getMouses() {
     let allMouseResponse = await fetch('/getmaeuse')
     let allMouse = JSON.parse(await allMouseResponse.text());
+    let favMouseResponse = await fetch('/getfavmaeuse');
+    let favMouse = JSON.parse(await favMouseResponse.text());
+    let mostVistedMouseResponse = await fetch('/mostvisitedmause');
+    let mostVistedMouse = JSON.parse(await mostVistedMouseResponse.text());
 
+    setMouses(allMouse, favMouse, mostVistedMouse);
+}
+
+
+function setMouses(allMouse, favMouse, mostVistedMouse) {
     setAllMouses(allMouse);
+    setFavMouse(favMouse);
+    setMostVistedMouse(mostVistedMouse);
 }
 
 function setAllMouses(allMouse) {
@@ -36,7 +47,7 @@ function jsonToHTML(mouse) {
     html += "<button type=\"button\" class=\"favorite-button\">Favorisieren</button>\n";
     html += "</div>\n";
     html += "<div>\n";
-    html += "<img class=\"mouse-image\" src=\"" + mouse.Bild + " \">\n";
+    html += "<img class=\"mouse-image\" src=\"" + mouse.Bild +" \">\n";
     html += "</div>\n";
     html += "</div>\n";
     html += "\n";

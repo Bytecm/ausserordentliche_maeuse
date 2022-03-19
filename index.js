@@ -46,19 +46,24 @@ function hash(password) {
     return crypto.createHash("sha256").update(password).digest("base64");
 }
 
-const maeuse = [
+var maeuse = [
     {
         "id": 1,
         "Mausname": "Computermaus",
         "Bild": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg",
         "Groesse": "ca. 10cm-13cm",
+        "Gewicht": "ca. 120 g",
         "Vorkommen": "Meistens auf Schreibtisch",
         "Funfact": "Blinkt gerne!",
         "Verfasser": "Chris",
         "Kommentare": [
             {
-                "Verfasser": "...",
+                "Verfasser": "Poggers",
                 "Kommentar": "Poggies!"
+            },
+            {
+                "Verfasser": "Random Guy",
+                "Kommentar": "INVEST!!"
             }
         ]
     },
@@ -67,6 +72,7 @@ const maeuse = [
         "Mausname": "Ostschermaus",
         "Bild": "https://kleinsaeuger.at/files/content/foto/wuehlmaeuse/Arvicola_amphibius%281%29_GrahamC57_flickr.jpg",
         "Groesse": "ca. 13cm-24cm",
+        "Gewicht": "ca. 65 bis 320 g",
         "Vorkommen": "Großen Teilen der Paläarktis",
         "Funfact": "Sehr groß!",
         "Verfasser": "Oliver",
@@ -82,6 +88,7 @@ const maeuse = [
         "Mausname": "Sumpfspitzmaus",
         "Bild": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neomys_anomalus.jpg/600px-Neomys_anomalus.jpg",
         "Groesse": "ca. 7cm",
+        "Gewicht": "ca. 6 bis 16 g",
         "Vorkommen": "Europa",
         "Funfact": "spitze Schnauze!",
         "Verfasser": "...",
@@ -97,6 +104,7 @@ const maeuse = [
         "Mausname": "Elefantenspitzmaus",
         "Bild": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Bushveld-elephant-shrew.jpg",
         "Groesse": "ca. 20cm",
+        "Gewicht": "ca. 35 bis 70 g",
         "Vorkommen": "Ost- und Südafrika",
         "Funfact": "Nase sieht wie ein Rüssel aus!",
         "Verfasser": "...",
@@ -112,6 +120,16 @@ const maeuse = [
 
 const users = [];
 
+app.post("/postComment", cookieSecurity, (req, res) => {
+    let comment = req.body.comment;
+    let author = req.cookies.username;
+    let mouseID = req.cookies.targetMouse;
+
+    maeuse[mouseID - 1].Kommentare.push({"Verfasser": author, "Kommentar": comment});
+
+    res.redirect("/details?id=" + req.cookies.targetMouse);
+});
+
 app.post("/signup", inputValidity, (req, res) => {
     const user = {name: req.body.user, password: hash(req.body.pass), favorites: []}
 
@@ -119,11 +137,8 @@ app.post("/signup", inputValidity, (req, res) => {
         users.push(user);
         const userName = user.name;
         console.debug("Added new credentials: " + userName + " " + user.password);
-    }
-    else {
+    } else {
         return response.statusText('Das Konto existiert schon, bitte einloggen.');
-
-
 
     }
 
@@ -133,15 +148,21 @@ app.post("/signup", inputValidity, (req, res) => {
 app.post("/login", inputValidity, (req, res) => {
     const user = users.find(user => user.name === req.body.user);
     console.debug("Logging in User: " + req.body.user);
+
     if (user) {
         res.cookie(
             "testSession",
             {user: req.body.user.toLowerCase(), loggedIn: true},
             {maxAge: 1000 * 60 * 15}
         );
+        res.cookie(
+            "username",
+            user.name,
+            {maxAge: 1000 * 60 * 15}
+        );
         res.redirect("/");
     } else {
-       return response.statusMessage
+        return response.statusMessage
         //res.redirect("/");
     }
 });
@@ -159,16 +180,28 @@ function cookieSecurity(req, res, next) {
     }
 }
 
-app.get("/", (_, res) => {
-    res.sendFile(path.join(__dirname, './src/public/main_site.html'));
+app.get("/", (req, res) => {
+    if (!req.cookies.testSession) {
+        //not logged in
+        res.sendFile(path.join(__dirname, './src/public/main_site.html'));
+    } else {
+        //logged in
+        res.sendFile(path.join(__dirname, './src/secure/main_site.html'));
+    }
 });
 
 app.get("/style.css", (_, res) => {
     res.sendFile(path.join(__dirname, './src/public/style.css'));
 });
 
-app.get("/main_site.js", (_, res) => {
-    res.sendFile(path.join(__dirname, './src/public/main_site.js'));
+app.get("/main_site.js", (req, res) => {
+    if (!req.cookies.testSession) {
+        //not logged in
+        res.sendFile(path.join(__dirname, './src/public/main_site.js'));
+    } else {
+        //logged in
+        res.sendFile(path.join(__dirname, './src/secure/main_site.js'));
+    }
 });
 
 app.get("/details", (req, res) => {
@@ -189,6 +222,10 @@ app.get("/post_comment.js", (_, res) => {
     res.sendFile(path.join(__dirname, './src/public/post_comment.js'));
 });
 
+app.get("/details.js", (_, res) => {
+    res.sendFile(path.join(__dirname, './src/public/details.js'));
+});
+
 app.get("/getmaeuse", (_, res) => {
     res.json(maeuse);
 });
@@ -201,6 +238,12 @@ app.get("/mostvisitedmause", (_, res) => {
     res.json(maeuse); //ToDo: CHANGE JSON TO THE MOST VISITED MOUSEs
 });
 
+
+app.get("/getMouseById", (req, res) => {
+    let mouseId = parseInt(req.query.id) - 1;
+    let maus = maeuse[mouseId];
+    res.json(maus);
+});
 
 
 const port = 8080;

@@ -55,6 +55,10 @@ body {
     width: auto;
 }
 
+#details-image {
+    height: 400px;
+}
+
 .submit-formfield:hover {
     font-size: 2vh;
     background: #ffecb3;

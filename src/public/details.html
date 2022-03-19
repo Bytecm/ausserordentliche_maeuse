@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <link rel="stylesheet" href="../style.css"/>
-    <!-- <script src="src/post_comment.js"></script> -->
+    <link rel="stylesheet" href="/style.css"/>
     <meta charset="UTF-8"/>
     <title> Details - Außerordentliche Mäuse </title>
 </head>
@@ -27,23 +26,23 @@
     <div id="details-body-funfact"><p> Funfact </p></div>
     <div class="details-body-fakten"><p> Verfasser: </p></div>
     <div id="details-body-verfasser"><p> Verfasser </p></div>
-    <div id="details-body-bild"><img src="https://via.placeholder.com/400x250"></div>
+    <div id="details-body-bild"><img id="details-image" src="https://via.placeholder.com/400x250"></div>
 </div>
 <div class="details-kommentare">
     <h3> Kommentare: </h3>
 
-    <input type="text" class="comment-formfield" id="comment-box" placeholder="Enter comment">
-    <button class="submit-comment-formfield" id="postButton">Post</button>
-    <ul id="unordered">
-    </ul>
+    <form method="POST" action="/postComment">
+        <input type="text" class="comment-formfield" id="comment-box" placeholder="Enter comment" name="comment">
+        <input type="submit" value="Post" class="submit-comment-formfield" id="postButton"/>
+    </form>
+
+
 
     <div class="line"></div>
     <div id="details-posted-kommentare">
-        <div id="details-posted-kommentare-verfasser"> Test</div>
-        <div id="details-posted-kommentare-body"> Hallo dies ist ein Test</div>
     </div>
 </div>
 <script src="post_comment.js"></script>
-
+<script src="details.js"></script>
 </body>
 </html>
