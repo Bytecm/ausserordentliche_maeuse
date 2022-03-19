@@ -5,6 +5,7 @@ getMouse(mouseId);
 
 
 function setMouse(mouse){
+    let headlineName = document.getElementById("details-mausname");
     let sizeLabel = document.getElementById("details-body-groesse");
     let weightLabel = document.getElementById("details-body-gewicht");
     let foundLabel = document.getElementById("details-body-vorkommen");
@@ -12,6 +13,7 @@ function setMouse(mouse){
     let authorLabel = document.getElementById("details-body-verfasser");
     let imageElement = document.getElementById("details-image");
 
+    headlineName.innerHTML = mouse.Mausname;
     sizeLabel.innerHTML = "<p>" + mouse.Groesse + "</p>";
     weightLabel.innerHTML = "<p>" + mouse.Gewicht + "</p>";
     foundLabel.innerHTML = "<p>" + mouse.Vorkommen + "</p>";
