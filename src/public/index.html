@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <link rel="stylesheet" href="../../style.css"/>
+        <!-- <script src="src/script.js"></script> -->
+        <meta charset="UTF-8"/>
+        <title> Hauptseite - Außerordentliche Mäuse </title>
+    </head>
+    <body>
+    <div>
+    <a href="/login.html"> Hier anmelden! </a> <br><br>
+    <a href="/signup.html"> Hier registrieren!</a><br><br>
+    <a href="/logout">ausloggen</a>
+
+    </div>
+        <div class="main-header">
+            <h1> Die Welt der außerordentlichen Mäuse </h1>
+            <div class="line"> </div>
+        </div>
+        <div class="main-body">
+            <div class="main-favorites">
+                <div id="favorites-heading">
+                    <h1> Favoriten </h1>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        <a href="/details.html"> Mausname 1 </a>
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild1">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        <a href="/details.html"> Mausname 2 </a>
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild2">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+                <div class="favorite-mouse">
+                    <div class="favorite-mouse-name">
+                        <a href="/details.html"> Mausname 3 </a>
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="favorite-mouse-bild3">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+            </div>
+            <div class="main-all">
+                <div id="all-heading">
+                    <h1> Alle Mäuse </h1>
+                </div>
+                <div class="all-mouse">
+                        <a href="/details.html"> Mausname 1 </a>
+                    <div class="all-mouse-name" id="all-mouse-text1">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild1">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg"
+                        height="300">
+                    </div>
+                </div>
+                <div class="all-mouse">
+                        <a href="/details.html"> Mausname 2 </a>
+                    <div class="all-mouse-name" id="all-mouse-text2">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild2">
+                        <img src="https://kleinsaeuger.at/files/content/foto/wuehlmaeuse/Arvicola_amphibius%281%29_GrahamC57_flickr.jpg"
+                        height="300">
+                    </div>
+
+                </div>
+                <div class="all-mouse">
+                        <a href="/details.html"> Mausname 3 </a>
+                    <div class="all-mouse-name" id="all-mouse-text3">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neomys_anomalus.jpg/600px-Neomys_anomalus.jpg"
+                        height="200">
+                    </div>
+                </div>
+
+                <div class="all-mouse">
+                    <a href="/details.html"> Mausname 4 </a>
+                    <div class="all-mouse-name" id="all-mouse-text4">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Bushveld-elephant-shrew.jpg"
+                             height="300">
+                    </div>
+                </div>
+
+                <div class="all-mouse">
+                    <a href="/details.html"> Mausname 5 </a>
+                    <div class="all-mouse-name" id="all-mouse-text5">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild5">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+
+
+                <div class="all-mouse">
+                    <a href="/details.html"> Mausname 5 </a>
+                    <div class="all-mouse-name" id="all-mouse-text6">
+                        <button type="button" class="favorite-button"> Favorisieren </button>
+                    </div>
+                    <div id="all-mouse-bild6">
+                        <img src="https://via.placeholder.com/400x250">
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    <script>
+        const maeuseHTML = [
+            {
+                "id":1,
+                "Mausname":"Computermaus",
+                "Groesse":"ca. 10cm-13cm",
+                "Vorkommen":"Meistens auf Schreibtisch",
+                "Funfact":"Blinkt gerne!",
+                "Verfasser":"Chris",
+                "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg",
+                "Kommentare":[
+                    // Post oder Put bauen
+                    {"Verfasser":"...", "Kommentar":"Poggies!"}
+                ]
+            },
+            {
+                "id":2,
+                "Mausname":"Ostschermaus",
+                "Groesse":"ca. 13cm-24cm",
+                "Vorkommen":"Großen Teilen der Paläarktis",
+                "Funfact":"Sehr groß!",
+                "Verfasser":"Oliver",
+                "ImageURL": "https://kleinsaeuger.at/files/content/foto/wuehlmaeuse/Arvicola_amphibius%281%29_GrahamC57_flickr.jpg",
+                "Kommentare":[
+                    // Post oder Put bauen
+                    {"Verfasser":"...", "Kommentar":"He is THICC!"}
+                ]
+            },
+            {
+                "id":3,
+                "Mausname":"Sumpfspitzmaus",
+                "Groesse":"ca. 7cm",
+                "Vorkommen":"Europa",
+                "Funfact":"spitze Schnauze!",
+                "Verfasser":"...",
+                "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neomys_anomalus.jpg/600px-Neomys_anomalus.jpg",
+                "Kommentare":[
+                    // Post oder Put bauen
+                    {"Verfasser":"...", "Kommentar":"Maulwurf-Maus XD"}
+                ]
+            },
+            {
+                "id":4,
+                "Mausname":"Elefantenspitzmaus",
+                "Groesse":"ca. 20cm",
+                "Vorkommen":"Ost- und Südafrika",
+                "Funfact":"Nase sieht wie ein Rüssel aus!",
+                "Verfasser":"...",
+                "ImageURL": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Bushveld-elephant-shrew.jpg",
+                "Kommentare":[
+                    // Post oder Put bauen
+                    {"Verfasser":"...", "Kommentar":"Elefanten-Maus XD"}
+                ]
+            }
+        ];
+        document.getElementById("all-mouse-text1").innerHTML = maeuseHTML[0].Mausname
+        document.getElementById("all-mouse-text2").innerHTML = maeuseHTML[1].Mausname
+        document.getElementById("all-mouse-text3").innerHTML = maeuseHTML[2].Mausname
+        document.getElementById("all-mouse-text4").innerHTML = maeuseHTML[3].Mausname
+        document.getElementById("all-mouse-text5").innerHTML = maeuseHTML[4].Mausname
+        document.getElementById("all-mouse-text6").innerHTML = maeuseHTML[5].Mausname
+    </script>
+    <script src="index.js"></script>
+    </body>
+</html>
