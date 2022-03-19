@@ -59,12 +59,8 @@ var maeuse = [
         "Verfasser": "Chris",
         "Kommentare": [
             {
-                "Verfasser": "Poggers",
-                "Kommentar": "Poggies!"
-            },
-            {
-                "Verfasser": "Random Guy",
-                "Kommentar": "INVEST!!"
+                "Verfasser": "User XY",
+                "Kommentar": "Ich mag das Leuchten!"
             }
         ]
     },
@@ -79,8 +75,8 @@ var maeuse = [
         "Verfasser": "Oliver",
         "Kommentare": [
             {
-                "Verfasser": "...",
-                "Kommentar": "He is THICC!"
+                "Verfasser": "User XY",
+                "Kommentar": "Wie Niedlich!"
             }
         ]
     },
@@ -95,8 +91,8 @@ var maeuse = [
         "Verfasser": "...",
         "Kommentare": [
             {
-                "Verfasser": "...",
-                "Kommentar": "Maulwurf-Maus XD"
+                "Verfasser": "User XY",
+                "Kommentar": "Sieht aus wie ein Maulwurf"
             }
         ]
     },
@@ -111,8 +107,8 @@ var maeuse = [
         "Verfasser": "...",
         "Kommentare": [
             {
-                "Verfasser": "...",
-                "Kommentar": "Elefanten-Maus XD"
+                "Verfasser": "User XY",
+                "Kommentar": "Ziemlich klein für Elephant"
             }
         ]
     }
