@@ -156,7 +156,7 @@ app.post("/login", inputValidity, (req, res) => {
     const user = users.find(user => user.name === req.body.user);
     console.debug("Logging in User: " + req.body.user);
 
-    if (user) {
+    if (user.password === hash(req.body.pass)) {
         res.cookie(
             "testSession",
             {user: req.body.user.toLowerCase(), loggedIn: true},
